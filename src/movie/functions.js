@@ -30,7 +30,7 @@ exports.updateMovies = async (newTitle,oldTitle) => {
 exports.deleteMovie = async(toDelete) => {
     try{
         await Movie.destroy(toDelete);
-        console.log("entry binned");
+        console.log("entry destroyed");
     } catch(error){
         console.log(error);
     }

@@ -22,8 +22,8 @@ Every command should be run from the terminal, with you being scoped into the ro
 - `--add --title="A Movie" (Optional: --actor="An actor's name") `
   > This command inserts a new record into the database, the parameter `--title` cannot be skipped, as the table REQUIRES it.
 - `--list 
-  > This command lists the records in the Movie database, with an optional `--oldTitle & --oldActor` parameter for filtering to movies LIKE the value the user provides
+  > This command lists the records in the Movie database.
 - `--update --newTitle "A Movie" --oldTitle "A movie already on the list"`
-  > This command allows the user to update a movie with new parameters, with optional title/actor fields
+  > This command allows the user to update a movie with new parameters, with optional title/actor fields.
 - `--delete "A Movie already on the list"`
   > This command allows the user to delete a single movie that matches the title they provide.
