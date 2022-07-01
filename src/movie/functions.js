@@ -1,38 +1,37 @@
-const yargs = require("yargs");
 const Movie = require("./table");
 
 exports.addMovie = async (movieObj) => {
     try {
         const response = await Movie.create(movieObj);
-        console.log("Movie added Successfully");
+        console.log('entry added!');
     } catch (error) {
         console.log(error);
     }
-};
+}
 
-exports.listMovie = async (movieObj) => {
+exports.listMovies = async () => {
     try {
-        const response = await Movie.findAll(movieObj);
+        const response = await Movie.findAll();
         console.log(response);
     } catch (error) {
         console.log(error);
     }
-};
+}
 
-exports.updateMovie = async (movieObj, yargsObj) => {
-	try {
-		// Example parameters:
-		// criteria: { title: "Testing Title" }
-		// updates: { title: "New Testing Title", actor: "John Doe", year: "2020" }
-
-		const response = await Movie.update(movieObj) 
-            {
-                where: {
-                    yargsObj.title, yargsObj.actor, yargsObj.year
-                }
-            };
+exports.updateMovies = async (newTitle,oldTitle) => {
+    try{
+        const response = await Movie.update(newTitle,oldTitle);
         console.log(response);
-	} catch (error) {
-		console.log(error);
-	}
-};
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+exports.deleteMovie = async(toDelete) => {
+    try{
+        await Movie.destroy(toDelete);
+        console.log("entry binned");
+    } catch(error){
+        console.log(error);
+    }
+}

@@ -1,30 +1,24 @@
-const yargs = require("yargs");
-const { sequelize } = require("./db/connection");
-const { addMovie, listMovie } = require("./movie/functions");
-const Movie = require("./movie/table");
+const yargs = require('yargs');
+const { sequelize } = require('./db/connection.js');
+const { addMovie, listMovies, updateMovies, deleteMovie } = require('./movie/functions.js');
 
 const app = async (yargsObj) => {
-     try {
+    try {
         await sequelize.sync({alter: true});
-        if (yargsObj.add) {
-            // add something to movie table
-            await addMovie({title: yargsObj.title, actor: yargsObj.actor, year: yargsObj.year});
-        } else if (yargsObj.list) {
-            // list content of movie table
-            console.log(await listMovie());
-        } else if (yargsObj.update) {
-            // update content of movie table
-            await updateMovie({movieObj});
-        } else if (yargsObj.delete) {
-            // delete entry from movie table
-        } else {
-            console.log("Incorrect command");
-        }
-     } catch (error) {
+        if(yargsObj.add) {
+            await addMovie({title:yargsObj.title,actor:yargsObj.actor,rating:yargsObj.rating});
+        } else if(yargsObj.list) {
+            await listMovies();
+        } else if(yargsObj.update) {
+            await updateMovies({title:yargsObj.newTitle,actor:yargsObj.newActor},{where:{title:yargsObj.oldTitle}});
+        } else if(yargsObj.delete) {
+            await deleteMovie({where:{title:yargsObj.delete}});
+        } else {console.log("wrong input");}
+    } catch (error) {
         console.log(error);
-     } finally {
+    } finally{
         await sequelize.close();
-     }
+    }
 }
 
 app(yargs.argv);

@@ -1,19 +1,18 @@
-const { DataTypes } = require("sequelize");
-const { sequelize } = require("../db/connection");
+const { DataTypes } = require('sequelize');
+const { sequelize } = require('../db/connection');
 
 const Movie = sequelize.define("Movie", {
     title: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
     },
     actor: {
         type: DataTypes.STRING,
         defaultValue: "Not specified",
     },
-    year: {
+    rating: {
         type: DataTypes.INTEGER,
-        defaultValue: 0,
     }
 });
 
